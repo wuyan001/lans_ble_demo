@@ -3,6 +3,7 @@ package com.ble.demo
 import android.Manifest
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothDevice
+import android.hardware.usb.UsbDevice
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,6 +24,11 @@ import com.ble.demo.viewmodel.BleModel
 import com.ble.mylibrary.interfaces.PeelMode
 import com.ble.mylibrary.interfaces.WeightUpdateCallback
 import com.ble.mylibrary.outdevice.LScaleHelper
+import com.lsg.uvccamera.UVCCameraProxy
+import com.lsg.uvccamera.bean.PicturePath
+import com.lsg.uvccamera.callback.ConnectCallback
+import com.lsg.uvccamera.callback.PreviewCallback
+import kotlinx.android.synthetic.main.fragment_bd2.*
 import java.math.BigDecimal
 
 class MainActivity2 : AppCompatActivity() {
@@ -46,8 +52,59 @@ class MainActivity2 : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestPermissions(permission,1)
         }
+        initUVCCamera()
         initLisnter()
         getData()
+    }
+    lateinit var mUVCCamera: UVCCameraProxy
+    private fun initUVCCamera() {
+        mUVCCamera = UVCCameraProxy(this)
+        // 已有默认配置，不需要可以不设置
+        mUVCCamera.getConfig()
+            .isDebug(true)
+            .setPicturePath(PicturePath.APPCACHE)
+            .setDirName("uvccamera")
+            .setProductId(0)
+            .setVendorId(0)
+        mUVCCamera.setPreviewTexture(textureView)
+
+        mUVCCamera.setConnectCallback(object : ConnectCallback {
+            override  fun onAttached(usbDevice: UsbDevice?) {
+                mUVCCamera.requestPermission(usbDevice)
+            }
+
+            override  fun onGranted(usbDevice: UsbDevice?, granted: Boolean) {
+                if (granted) {
+                    mUVCCamera.connectDevice(usbDevice)
+                }
+            }
+
+            override   fun onConnected(usbDevice: UsbDevice?) {
+                mUVCCamera.openCamera()
+            }
+
+            override   fun onCameraOpened() {
+//                showAllPreviewSizes()
+                mUVCCamera.setPreviewSize(640, 480)
+                mUVCCamera.startPreview()
+            }
+
+            override  fun onDetached(usbDevice: UsbDevice?) {
+                mUVCCamera.closeCamera()
+            }
+        })
+        mUVCCamera.setPhotographCallback {
+            mUVCCamera.takePicture()
+
+        }
+        mUVCCamera.setPreviewCallback(object : PreviewCallback {
+            override  fun onPreviewFrame(yuv: ByteArray?) {}
+        })
+        mUVCCamera.setPictureTakenCallback { path ->
+//            path1 = path
+//            mImageView1.setImageURI(null)
+//            mImageView1.setImageURI(Uri.parse(path))
+        }
     }
     private fun initLisnter() {
         binding.btSystem.setOnClickListener {

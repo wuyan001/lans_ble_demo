@@ -12,7 +12,7 @@ android {
 
     defaultConfig {
         applicationId "com.ble.demo"
-        minSdkVersion 16
+        minSdkVersion 18
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -87,4 +87,6 @@ dependencies {
 
     //lans ble libray
     implementation 'io.github.lansdialog:blelibrary:2.2.7'
+    //相机
+    implementation 'com.lsg:camera:1.1.2'
 }
