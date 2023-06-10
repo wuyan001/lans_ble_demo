@@ -87,6 +87,6 @@ dependencies {
 
     //lans ble libray
     implementation 'io.github.lansdialog:blelibrary:2.2.9'
-    //lans相机(使用原生相机,不需此依赖)
+    //相机
     implementation 'com.lsg:camera:1.1.2'
 }
