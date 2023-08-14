@@ -40,6 +40,7 @@ public class Presenter {
              * 1:连接成功
              * 2:连接失败
              * 3:连接断开
+             * 31:
              */
             if (result == 1) {
                 String device_name = device1.getName();

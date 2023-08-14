@@ -59,8 +59,9 @@ class PopBlueSearchPop(
 
         elevation = 10f
         initRec(context,builder)
-        LScaleHelper.getInstance(context).startscan(false) { device, rssi ->
 
+
+        LScaleHelper.getInstance(context).startscan(false) { device, rssi ->
            if ( !adapter.data.contains(device)){
                adapter.addData(device)
            }

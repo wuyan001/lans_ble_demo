@@ -82,6 +82,8 @@ class BleModel : ViewModel() {
                     showShortCenter("零点错误")
                 }else if (zp == 5){
                      showShortCenter("去皮超范围")
+                 } else if (zp == 6){
+                     showShortCenter("去皮值错误")
                  } else if(zp == 0xff){
                     showShortCenter("超时")
                 }else if (zp == 0xee){
