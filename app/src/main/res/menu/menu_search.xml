@@ -7,7 +7,6 @@
          android:icon="@mipmap/icon_search"
         app:showAsAction="always"
         android:title="搜索"/>
-
     <item
         android:id="@+id/action_send"
         android:icon="@mipmap/ic_tool"

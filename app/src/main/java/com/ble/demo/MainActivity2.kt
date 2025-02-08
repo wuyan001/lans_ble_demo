@@ -172,6 +172,9 @@ class MainActivity2 : AppCompatActivity() {
                         3 -> {
                             binding.tvState.text = "状态: 断开"
                         }
+                        31 -> {
+                            binding.tvState.text = "状态: 被动断开"
+                        }
                         32 ->{
                             binding.tvState.text = "状态: 未测到可用usb"
                         }
@@ -231,10 +234,8 @@ class MainActivity2 : AppCompatActivity() {
     @SuppressLint("CheckResult")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == R.id.action_search) {
-            PopBlueSearchPop.Builder(this).canConnect(true).setModel(model!!)
-                .setOnSelectCallback { result, device ->
-                    updateConnectResult(result, device)
-                }.build().show_center()
+            showSearchPop()
+
         }else if (item.itemId == R.id.action_send){
             T.showShortCenter("当前指令未开放")
 //            MaterialDialog(this).show {
@@ -246,6 +247,13 @@ class MainActivity2 : AppCompatActivity() {
 //            }
         }
         return true
+    }
+
+    private fun showSearchPop(){
+        PopBlueSearchPop.Builder(this).canConnect(true).setModel(model!!)
+            .setOnSelectCallback { result, device ->
+                updateConnectResult(result, device)
+            }.build().show_center()
     }
 
     @SuppressLint("SetTextI18n")

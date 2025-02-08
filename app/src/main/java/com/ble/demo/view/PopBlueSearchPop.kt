@@ -61,7 +61,7 @@ class PopBlueSearchPop(
         initRec(context,builder)
 
 
-        LScaleHelper.getInstance(context).startscan(false) { device, rssi ->
+        LScaleHelper.getInstance(context).startscan(true) { device, rssi ->
            if ( !adapter.data.contains(device)){
                adapter.addData(device)
            }
@@ -118,6 +118,7 @@ class PopBlueSearchPop(
             this.selectCallBack = selectCallBack
             return this
         }
+
         fun canConnect(canconnect:Boolean):Builder{
             this.canconnect = canconnect
             return  this
