@@ -13,11 +13,9 @@ class MainApp : Application() {
     override fun onCreate() {
         super.onCreate()
         context = baseContext
-        LansManager.getInstance().init(this);
+        LansManager.getInstance().setBleAutoConnect(true).setBleDisAutoConnect(true).init(this);
 
     }
-
-
 
 
 }
