@@ -3,6 +3,7 @@ package com.ble.demo
 import android.app.Application
 import android.content.Context
 import com.ble.mylibrary.LansManager
+import com.ble.mylibrary.outdevice.LScaleHelper
 
 class MainApp : Application() {
     companion object {

@@ -1,21 +1,4 @@
-package com.ble.demo.viewmodel;
-
-import android.bluetooth.BluetoothDevice;
-import android.content.Context;
-
-import com.ble.demo.MainApp;
-import com.ble.mylibrary.interfaces.BatteryStatusCallback;
-import com.ble.mylibrary.interfaces.PeelMode;
-import com.ble.mylibrary.interfaces.WeightMode;
-import com.ble.mylibrary.interfaces.WeightUpdateCallback;
-import com.ble.mylibrary.outdevice.LScaleHelper;
-
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
 public class Presenter {
-
 
     /**
      * 1.申请权限: 请查看AndroidManifest.xml
