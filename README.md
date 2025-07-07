@@ -3,7 +3,8 @@ public class Presenter {
     /**
      * 1.申请权限: 请查看AndroidManifest.xml
      * 2.Application中进行初始化:
-     *   LansManager.getInstance().setBleAutoConnect(true).setBleDisAutoConnect(true).init(this);
+     * componyKey("xxxxx") //请联系蓝石获取componyKey
+     *   LansManager.getInstance().componyKey("xxxxx").init(this);
      * 3.api调用
      *      a。usb秤：直接调用setWUCallback即可获取重量值
      *      b。ble秤：先调用搜索蓝牙，然后进行连接，继而读取重量值
