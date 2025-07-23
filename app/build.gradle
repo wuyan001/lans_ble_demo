@@ -86,8 +86,8 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.2.0'
 
     //lans ble libray
-    implementation 'io.github.lansdialog:blelibrary:2.5.0'
-//    implementation 'io.github.lansdialog:latest.release'
+    implementation 'io.github.xxx:xxx:x.x.x'
     //相机
-    implementation 'com.lsg:camera:1.1.2'
+   // implementation 'com.lsg:camera:1.1.2'
+    implementation 'io.gitee.uvccamera:camera:1.2.0'
 }
